@@ -1,0 +1,23 @@
+homework 1 09-16-2019
+Tim van der Zee
+
+1a Gradient descent might be useful in situations where there is a lot of data, because linear regression is computatively costly
+1b Gradient descent stops when the previous step size is smaller than a chosen threshold value (default: precision = 0.00001)
+1c Done. However, I think this is almost identical to the original code that used the norm of the chance in value (np.linalg.norm(w_previous - w_current)) 
+for threshold instead of the nrom of the gradient: the only difference is mu, but because mu is constant there is technically only a difference in value of the treshold (different by a factor mu)
+1d If we take a too large learning rate, we don't get result due to error. If we take a too small learning rate, we do get (similar) result, but it takes more steps and therefore more computational time
+1e It seems that each iteration moves in the direction of steepest descent, e.g. if you would imagine releasing a ball in a bowl it would travel approx. the same path (under the force of gravity)
+1f Newtons method seeks to find the zero of a function, gradient descent seeks to find the minumum. To facilitate zero-finding, Newtons method chooses the step size such that zero is reached in the next step when the function is linear. 
+This is a pretty fast (big step) way of doing things. Gradient descent can be more subtle, taking smaller steps dependent on the steepness of the gradient and the learning rate parameter mu.
+
+2a The performance after 100 iterations is similar, which makes sense because the same amount of data is used by that time.
+With fewer iterations, performance is worse with stochastic gradient descent, which makes sense because only a part of the data is used whereas with normal gradient descent all the data is used at all times
+2b See python code provided.
+2c It generally does NOT move in the direction of steepest descent, because the path the weight takes in time is clearly different from the path during gradient descent, and the latter did move in the direction of steepest descent
+When the estimate is close to correct, it seems to converge toward a single value. This is because the more data we have, the less influence one single data point has on the weights (It is not strickly converging however, but there is no noticible)
+2d Similarly as with normal gradient descent, if we make the learning rate too high, the prediction can run off in the wrong direction and may even become unstable. 
+Stochastic gradient descent seems to just survive a learning rate of 2, whereas normal gradient descent does not. This might indicate stochastic gradient descent is more robust..
+
+3 We would change the weight vector and the output vector (1xN) into a matrix (MxN), with N the amount of observations and M the amount of output variables
+Consequently, the weights and the gradient also become MxN
+In order to assure that cost is still scalar, we would need to sum with the error with respect to both dimensions
